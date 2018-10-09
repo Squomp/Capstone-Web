@@ -18,9 +18,9 @@ class Navbar extends Component {
               <NavLink to="/">Home</NavLink>
               <NavLink to="/log">Log</NavLink>
             </div>
+            <Route exact path="/" component={Home}/>
+            <Route path="/log" component={Log}/>
           </header>
-          <Route exact path="/" component={Home}/>
-          <Route path="/log" component={Log}/>
         </div>
       </HashRouter>
     );

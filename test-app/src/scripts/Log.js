@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
 import '../styles/Log.css';
 import Navbar from './Navbar.js';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import moment from 'moment';
 
 class Log extends Component {
 
   constructor () {
     super();
     this.state = {
-      isWeekly: true,
+      isWeekly: false,
       isMoneyIn: false,
-      amount: ''
+      amount: '',
+      dayOfWeek: '',
+      dayOfMonth: moment()
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleDateSelect = this.handleDateSelect.bind(this);
+    this.WeeklySection = this.WeeklySection.bind(this);
+    this.MonthlySection = this.MonthlySection.bind(this);
   }
 
   handleChange (e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  handleDateSelect(date) {
+    this.setState({ ['dayOfMonth']: date });
+  }
+
   WeeklySection() {
     return (
         <div>
           <label> Day of the week:
-            <select> //add onChange when dynamic state values is figured out
+            <select name="dayOfWeek" onChange={this.handleChange}>
               <option value="monday">Monday</option>
               <option value="tuesday">Tuesday</option>
               <option value="wednesday">Wednesday</option>
@@ -33,6 +45,18 @@ class Log extends Component {
             </select>
           </label>
         </div>
+    );
+  }
+
+  MonthlySection() {
+    return (
+      <div>
+        <label>
+          Day of the month: <DatePicker
+                            selected={this.state.dayOfMonth}
+                            onSelect={this.handleDateSelect} />
+        </label>
+      </div>
     );
   }
 
@@ -50,11 +74,9 @@ class Log extends Component {
             <input type="number" step="0.01" name="amount" onChange={this.handleChange} />
           </label>
           <br></br>
-          {this.state.isWeekly && <this.WeeklySection /> }
+          {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection /> }
           <br></br>
           <input type="submit" value="Submit"/>
-
-
         </form>
       </div>
     );
