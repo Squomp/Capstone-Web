@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
 class LogIn extends Component {
 
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       email: '',
-      password: ''
+      password: '',
+      redirect: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -15,19 +17,24 @@ class LogIn extends Component {
 
   handleSubmit(e) {
     // POST form data
-    var url = this.props.expressRoot + '/api/auth/login'
-    axios.post(url, {
+    axios.post('/api/auth/login', {
       email: this.state.email,
       password: this.state.password
     })
-    .then(function (response) {
+    .then( (response) => {
       console.log(response);
+      // redirect to home
+      this.setState({ redirect: true });
     })
-    .catch(function (error) {
+    .catch( (error) => {
       console.log(error);
     });
+  }
 
-    // redirect to home
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/' />
+    }
   }
 
   handleChange (e) {
@@ -37,6 +44,7 @@ class LogIn extends Component {
   render() {
     return (
       <div className="App">
+      {this.renderRedirect()}
         <form onSubmit={this.handleSubmit}>
           <label>Email:
             <input type="text" name="email" onChange={this.handleChange} />
