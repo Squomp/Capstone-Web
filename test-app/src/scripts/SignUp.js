@@ -3,8 +3,8 @@ import axios from 'axios';
 
 class SignUp extends Component {
 
-  constructor (props) {
-    super(props);
+  constructor () {
+    super();
     this.state = {
       username: '',
       email: '',
@@ -16,7 +16,7 @@ class SignUp extends Component {
 
   handleSubmit(e) {
     // POST form data
-    var url = this.props.expressRoot + '/api/auth/register'
+    var url = '/api/auth/register';
     axios.post(url, {
       username: this.state.username,
       email: this.state.email,

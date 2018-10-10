@@ -14,9 +14,6 @@ class Navbar extends Component {
 
   constructor() {
     super();
-    this.state = {
-      expressRoot: 'https://localhost:3030'
-    };
   }
 
   render() {
@@ -32,8 +29,8 @@ class Navbar extends Component {
             </div>
             <Route exact path="/" component={Home}/>
             <Route path="/log" component={Log}/>
-            <Route path="/signUp" render={(props) => <SignUp expressRoot={this.state.expressRoot} />}/>
-            <Route path="/login" render={(props) => <LogIn expressRoot={this.state.expressRoot} />}/>
+            <Route path="/signUp" render={(props) => <SignUp />}/>
+            <Route path="/login" render={(props) => <LogIn />}/>
           </header>
         </div>
       </HashRouter>
