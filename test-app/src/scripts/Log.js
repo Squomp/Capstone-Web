@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import '../styles/Log.css';
-import Navbar from './Navbar.js';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import moment from 'moment';
