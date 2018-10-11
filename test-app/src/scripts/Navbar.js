@@ -28,13 +28,13 @@ class Navbar extends Component {
             <div className="topnav">
               <NavLink to="/">Home</NavLink>
               <NavLink to="/log">Log</NavLink>
-              <NavLink to="/signUp">Sign Up</NavLink>
+              <NavLink to="/signup">Sign Up</NavLink>
               <NavLink to="/login">Log In</NavLink>
               <NavLink to="/logout">Log Out</NavLink>
             </div>
             <Route exact path="/" component={Home}/>
             <Route path="/log" component={Log}/>
-            <Route path="/signUp" component={SignUp}/>
+            <Route path="/signup" component={SignUp}/>
             <Route path="/login" component={LogIn}/>
             <Route path="/logout" component={LogOut}/>
           </header>

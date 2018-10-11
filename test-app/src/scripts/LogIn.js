@@ -23,12 +23,12 @@ class LogIn extends Component {
     })
     .then( (response) => {
       console.log(response);
-      // redirect to home
-      this.setState({ redirect: true });
     })
     .catch( (error) => {
       console.log(error);
     });
+    // redirect to home
+    this.setState({ redirect: true });
   }
 
   renderRedirect = () => {

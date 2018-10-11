@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import '../styles/Log.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -11,7 +12,7 @@ class Log extends Component {
     this.state = {
       isWeekly: false,
       isMoneyIn: false,
-      amount: '',
+      amount: 0,
       dayOfWeek: '',
       dayOfMonth: moment()
     };
@@ -19,6 +20,20 @@ class Log extends Component {
     this.handleDateSelect = this.handleDateSelect.bind(this);
     this.WeeklySection = this.WeeklySection.bind(this);
     this.MonthlySection = this.MonthlySection.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleSubmit(e) {
+    // POST form data
+    axios.post('/api/finance/log', {
+      amount: this.state.amount
+    })
+    .then( (response) => {
+      console.log(response);
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
   }
 
   handleChange (e) {
@@ -64,7 +79,7 @@ class Log extends Component {
     return (
       <div className="App">
         <h1>log</h1>
-        <form>
+        <form onSubmit={this.handleSubmit}>
           <input type="radio" name="isMoneyIn" value="true" onClick={this.handleChange} /> Money In
           <br></br>
           <input type="radio" name="isMoneyIn" value="false" onClick={this.handleChange} /> Money Out

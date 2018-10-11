@@ -16,12 +16,12 @@ class LogOut extends Component {
     axios.post('/api/auth/logout')
     .then(function (response) {
       console.log(response);
-      // redirect to home
-      this.setState({ redirect: true });
     })
     .catch(function (error) {
       console.log(error);
     });
+    // redirect to home
+    this.setState({ redirect: true });
   }
 
   renderRedirect = () => {
