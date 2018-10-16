@@ -10,9 +10,10 @@ class Log extends Component {
   constructor () {
     super();
     this.state = {
-      isWeekly: false,
+      isWeekly: true,
       isMoneyIn: false,
       amount: 0,
+      desc: '',
       dayOfWeek: '',
       dayOfMonth: moment()
     };
@@ -86,6 +87,10 @@ class Log extends Component {
           <br></br>
           <label>Amount: $
             <input type="number" step="0.01" name="amount" onChange={this.handleChange} />
+          </label>
+          <br></br>
+          <label>Description:
+            <input type="text" name="desc" maxLength='50' onChange={this.handleChange} />
           </label>
           <br></br>
           {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection /> }

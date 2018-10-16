@@ -8,54 +8,87 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      success: true,
-      logs: [],
-      redirectPath: ''
+      data: undefined,
+      username: '',
+      redirectPath: '',
+      shouldRedirect: false
     }
     this.handleClick = this.handleClick.bind(this);
+    this.AuthButtons = this.AuthButtons.bind(this);
+    this.PeriodData = this.PeriodData.bind(this);
   }
 
   componentDidMount = () => {
-    axios.get('/api/finance/logs')
-    .then( (response) => {
-      console.log(response.data.data.tests);
-      this.setState({
-        logs: response.data.data.tests,
-        success: response.data.success
-      });
-    })
+    axios.all([
+      axios.get('/api/finance/current'),
+      axios.get('/api/user')
+    ])
+    .then(axios.spread((financeRes, userRes) => {
+        this.setState({
+          data: financeRes.data.data,
+          username: userRes.data.data.user.username
+        });
+    }))
     .catch( (error) => {
-      this.setState({ success: false });
       console.log(error);
     });
   }
 
   renderRedirect = () => {
-    if (this.state.redirect !== '/') {
+    if (this.state.shouldRedirect && this.state.redirect !== '/') {
       return <Redirect to={this.state.redirectPath} />
     }
   }
 
   handleClick(e) {
-    this.setState({ redirectPath: '/' + e.target.name });
+    if (e.target.name === 'newPeriod') {
+      axios.post('/api/finance/period')
+      .then( (response) => {
+        console.log(response);
+      })
+      .catch( (error) => {
+        console.log(error);
+      });
+    } else {
+      this.setState({
+        redirectPath: '/' + e.target.name ,
+        shouldRedirect: true
+      });
+    }
+  }
+
+  AuthButtons() {
+    return (
+      <div>
+        <button name="login" onClick={this.handleClick}>Log In</button>
+        <button name="signup" onClick={this.handleClick}>Sign Up</button>
+      </div>
+    );
+  }
+
+  PeriodData() {
+    return (
+      <div>
+        <p>{this.state.data.period.spent}</p>
+        <p>{this.state.data.period.remaining}</p>
+      </div>
+    );
   }
 
   render() {
+    const data = this.state.data;
     return (
       <div className="App">
-        <h1>home</h1>
-        {this.renderRedirect()}
-        { this.state.logs.length > 0 ? (
-          <p>{this.state.logs[0].amount}</p>
-          )
-          :
+        { this.renderRedirect() }
+        { this.state.username ? <h1>Welcome {this.state.username}</h1> : <h1>Log in or sign up to use features</h1> }
+        { data !== undefined ?
           (
             <div>
-              <button name="login" onClick={this.handleClick}>Log In</button>
-              <button name="signup" onClick={this.handleClick}>Sign Up</button>
+              { data.period && <this.PeriodData />}
+              <br></br>
+              <button name="newPeriod" onClick={this.handleClick}>New Period</button>
             </div>
-          )
-        }
+          ) : <this.AuthButtons /> }
       </div>
     );
   }
