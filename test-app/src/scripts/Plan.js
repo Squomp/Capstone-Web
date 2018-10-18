@@ -34,18 +34,26 @@ class Plan extends Component {
 
   render() {
     return (
-      <div className='App'>
+      <div className='plan'>
+        <h1>Create a plan</h1>
+
         <form onSubmit={this.handleSubmit}>
-          <label>Amount: $
-            <input type="number" step="0.01" name="amount" onChange={this.handleChange} />
+          <label>
+            <span>
+              Amount
+            </span>
+            $<input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
           </label>
-          <br></br>
-          <label> Day of the week:
-            <select name="period" value={this.state.period} onChange={this.handleChange}>
+
+          <label>
+            <span>
+              Period
+            </span>
+            <select class="select-field" name="period" value={this.state.period} onChange={this.handleChange}>
               <option value="weekly">Weekly</option>
             </select>
           </label>
-          <br></br>
+
           <input type="submit" value="Submit"/>
         </form>
       </div>

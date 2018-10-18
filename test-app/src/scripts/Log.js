@@ -15,7 +15,7 @@ class Log extends Component {
       amount: 0,
       desc: '',
       dayOfWeek: '',
-      dayOfMonth: moment()
+      dayOfMonth: moment()._d
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
@@ -25,15 +25,20 @@ class Log extends Component {
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     // POST form data
     axios.post('/api/finance/log', {
-      amount: this.state.amount
+      amount: this.state.amount,
+      description: this.state.desc,
+      dayOfWeek: this.state.dayOfWeek,
+      date: this.state.dayOfMonth,
+      isIncome: this.state.isMoneyIn
     })
     .then( (response) => {
       console.log(response);
     })
     .catch( (error) => {
-      console.log(error);
+      console.log(error.response);
     });
   }
 
@@ -48,8 +53,11 @@ class Log extends Component {
   WeeklySection() {
     return (
         <div>
-          <label> Day of the week:
-            <select name="dayOfWeek" onChange={this.handleChange}>
+          <label>
+            <span>
+              Day of the week:
+            </span>
+            <select class="select-field" name="dayOfWeek" onChange={this.handleChange}>
               <option value="monday">Monday</option>
               <option value="tuesday">Tuesday</option>
               <option value="wednesday">Wednesday</option>
@@ -78,22 +86,39 @@ class Log extends Component {
   render() {
 
     return (
-      <div className="App">
-        <h1>log</h1>
+      <div className="log">
+        <h1>Log a Transaction</h1>
         <form onSubmit={this.handleSubmit}>
-          <input type="radio" name="isMoneyIn" value="true" onClick={this.handleChange} /> Money In
-          <br></br>
-          <input type="radio" name="isMoneyIn" value="false" onClick={this.handleChange} /> Money Out
-          <br></br>
-          <label>Amount: $
-            <input type="number" step="0.01" name="amount" onChange={this.handleChange} />
+
+          <label>
+              <input class="input-field" type="radio" name="isMoneyIn" value="false" onClick={this.handleChange} />
+              <span class="radio">
+                Money in
+              </span>
           </label>
-          <br></br>
-          <label>Description:
-            <input type="text" name="desc" maxLength='50' onChange={this.handleChange} />
+
+          <label>
+              <input class="input-field" type="radio" name="isMoneyIn" value="true" onClick={this.handleChange} />
+              <span class="radio">
+                Money out
+              </span>
           </label>
-          <br></br>
-          {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection /> }
+
+          <label>
+            <span>
+              Amount
+            </span>
+            $<input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
+          </label>
+
+          <label>
+            <span>
+              Description
+            </span>
+            <input type="text" class="input-field" name="desc" maxLength="50" onChange={this.handleChange} />
+          </label>
+
+          { this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection /> }
           <br></br>
           <input type="submit" value="Submit"/>
         </form>

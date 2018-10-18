@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/Navbar.css';
+import '../styles/GlobalStyle.css';
 import {
   Route,
   NavLink,

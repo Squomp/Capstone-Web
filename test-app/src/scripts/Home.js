@@ -30,7 +30,7 @@ class Home extends Component {
         });
     }))
     .catch( (error) => {
-      console.log(error);
+      console.log(error.response);
     });
   }
 
@@ -47,7 +47,7 @@ class Home extends Component {
         console.log(response);
       })
       .catch( (error) => {
-        console.log(error);
+        console.log(error.response  );
       });
     } else {
       this.setState({
@@ -80,11 +80,12 @@ class Home extends Component {
     return (
       <div className="App">
         { this.renderRedirect() }
-        { this.state.username ? <h1>Welcome {this.state.username}</h1> : <h1>Log in or sign up to use features</h1> }
+        { this.state.username ? <h1>Welcome, {this.state.username}</h1> : <h1>Log in or sign up to use features</h1> }
         { data !== undefined ?
           (
             <div>
               { data.period && <this.PeriodData />}
+              {console.log(data.period)}
               <br></br>
               <button name="newPeriod" onClick={this.handleClick}>New Period</button>
             </div>

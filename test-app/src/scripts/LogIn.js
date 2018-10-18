@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/LogIn.css';
 import axios from 'axios';
 import { Redirect } from 'react-router-dom';
 
@@ -43,17 +44,26 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="login">
       {this.renderRedirect()}
+      <h1>Log In</h1>
+
         <form onSubmit={this.handleSubmit}>
-          <label>Email:
-            <input type="text" name="email" onChange={this.handleChange} />
+
+          <label>
+            <span>
+              Email
+            </span>
+            <input type="text" class="input-field" name="email" onChange={this.handleChange} />
           </label>
-          <br></br>
-          <label>Password:
-            <input type="text" name="password" onChange={this.handleChange} />
+
+          <label>
+            <span>
+              Password
+            </span>
+            <input type="password" class="input-field" name="password" onChange={this.handleChange} />
           </label>
-          <br></br>
+
           <input type="submit" value="Submit"/>
         </form>
       </div>

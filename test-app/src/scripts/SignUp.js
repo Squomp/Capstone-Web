@@ -46,21 +46,32 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="signup">
         {this.renderRedirect()}
+        <h1>Sign Up</h1>
+
         <form onSubmit={this.handleSubmit}>
-          <label>Username:
-            <input type="text" name="username" onChange={this.handleChange} />
+          <label>
+            <span>
+              Username
+            </span>
+            <input type="text" class="input-field" name="username" onChange={this.handlChange} />
           </label>
-          <br></br>
-          <label>Email:
-            <input type="text" name="email" onChange={this.handleChange} />
+
+          <label>
+            <span>
+              Email
+            </span>
+            <input type="text" class="input-field" name="email" onChange={this.onChange} />
           </label>
-          <br></br>
-          <label>Password:
-            <input type="text" name="password" onChange={this.handleChange} />
+
+          <label>
+            <span>
+              Password
+            </span>
+            <input type="password" class="input-field" name="password" onChange={this.onChange} />
           </label>
-          <br></br>
+
           <input type="submit" value="Submit"/>
         </form>
       </div>
