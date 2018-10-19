@@ -34,7 +34,7 @@ class Plan extends Component {
 
   render() {
     return (
-      <div className='plan'>
+      <div className='plan body'>
         <h1>Create a plan</h1>
 
         <form onSubmit={this.handleSubmit}>

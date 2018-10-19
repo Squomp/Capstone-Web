@@ -10,7 +10,8 @@ class SignUp extends Component {
       username: '',
       email: '',
       password: '',
-      redirect: false
+      redirect: false,
+      message: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,12 +27,15 @@ class SignUp extends Component {
     })
     .then(function (response) {
       console.log(response);
+      if (response.data.success) {
+        this.setState({ redirect: true });
+      }
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error.response);
+      this.setState({ message: 'Failed to create account'});
     });
     // redirect to home
-    this.setState({ redirect: true });
   }
 
   renderRedirect = () => {
@@ -46,10 +50,10 @@ class SignUp extends Component {
 
   render() {
     return (
-      <div className="signup">
+      <div className="signup body">
         {this.renderRedirect()}
         <h1>Sign Up</h1>
-
+        <p className="errorMessage">{this.state.message}</p>
         <form onSubmit={this.handleSubmit}>
           <label>
             <span>

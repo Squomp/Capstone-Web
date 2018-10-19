@@ -86,7 +86,7 @@ class Log extends Component {
   render() {
 
     return (
-      <div className="log">
+      <div className="log body">
         <h1>Log a Transaction</h1>
         <form onSubmit={this.handleSubmit}>
 

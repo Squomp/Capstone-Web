@@ -1,6 +1,7 @@
 
 div {
-  font-family: Helvetica;
+  
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 h1 {
@@ -45,7 +46,7 @@ input[type=submit],
 input[type=button]{
 	border: none;
 	padding: 8px 15px 8px 15px;
-	background: #FF8500;
+	background: orange;
 	color: #fff;
 	border-radius: 3px;
 }
@@ -53,4 +54,22 @@ input[type=button]{
   input[type=button]:hover{
 	background: #EA7B00;
 	color: #fff;
+}
+
+html {
+	background-color: #e0e0e0;
+}
+
+.body {
+	box-shadow: 1px -1px 12px gray;
+	border-radius: 3px;
+	background-color: #ebebeb;
+	width: 80%;
+	margin: 3% auto;
+	padding: 3% 0 3% 0;
+}
+
+.errorMessage {
+	color: red;
+	text-align: center;
 }

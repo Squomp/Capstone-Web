@@ -2,7 +2,26 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import '../styles/HomeStyle.css';
 import axios from 'axios';
-import CanvasJS from 'canvasjs';
+import {VictoryPie } from 'victory';
+import Button from '@material-ui/core/Button';
+import { createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      light: '#208BDB',
+      main: '#1C50C4',
+      dark: '#2B33DB',
+      contrastText: '#fff',
+    },
+    secondary: {
+      light: '#ff7961',
+      main: '#f44336',
+      dark: '#ba000d',
+      contrastText: '#000',
+    },
+  },
+});
 
 class Home extends Component {
 
@@ -61,8 +80,8 @@ class Home extends Component {
   AuthButtons() {
     return (
       <div className="authButtons">
-        <button name="login" onClick={this.handleClick}>Log In</button>
-        <button name="signup" onClick={this.handleClick}>Sign Up</button>
+        <Button variant="text" color="primary" name="login" onClick={this.handleClick}>Log In</Button>
+        <Button variant="text" color="primary" name="signup" onClick={this.handleClick}>Sign Up</Button>
       </div>
     );
   }
@@ -72,35 +91,29 @@ class Home extends Component {
     const spent = this.state.data.period.spent;
     const remaining = this.state.data.period.remaining;
 
-    const options = {
-			animationEnabled: true,
-			exportEnabled: true,
-			theme: "dark2", // "light1", "dark1", "dark2"
-			title:{
-				text: "Your Funds"
-			},
-			data: [{
-				type: "pie",
-				indexLabel: "{label}: {y}%",		
-				startAngle: -90,
-				dataPoints: [
-					{ y: spent, label: "Spent" },
-					{ y: 24, label: "Remaining" }
-				]
-			}]
-		}
-      {/*You can get reference to the chart instance as shown above using onRef. 
-      This allows you to access all chart properties and methods*/}
-
+    
     return (
       <div className="periodData">
-        <div className="moneyValues">
-          <p>Money Spent: ${spent}</p>
-          <p>Money Remaining: ${remaining}</p>
+        <div className="moneyData">
+          <div className="moneyLabels">
+            <p className="makeOrange">Money Spent:</p>
+            <p className="makeBlue">Money Remaining:</p>
+          </div>
+          <div className="moneyValues">
+            <p className="makeOrange">${spent}</p>
+            <p className="makeBlue">${remaining}</p>
+          </div>
         </div>
-
-        <CanvasJSChart options = {options} 
-				  onRef={ref => this.chart = ref}/>
+        <div className="pieChart">
+          <VictoryPie
+            data={[
+              { x: "Spent", y: spent },
+              { x: "Remaining", y: remaining }
+            ]}
+            animate={{ duration: 2000 }}
+            colorScale={["orange", "#1CC4ED"]}
+            />
+        </div>
       </div>
     );
   }
@@ -108,7 +121,7 @@ class Home extends Component {
   render() {
     const data = this.state.data;
     return (
-      <div className="home">
+      <div className="home body">
         { this.renderRedirect() }
         { this.state.username ? <h1>Welcome, {this.state.username}!</h1> : <h1>Log in or sign up to use features</h1> }
         { data !== undefined ?
@@ -117,7 +130,7 @@ class Home extends Component {
               <div className="row"><h2>Your Current Period</h2></div>
               <div className="row">{ data.period ? <this.PeriodData /> : <h3>Start a new period</h3> }</div>
               {console.log(data.period)}
-              <div className="row"><button name="newPeriod" onClick={this.handleClick}>New Period</button></div>
+              <div className="row"><Button variant="outlined" color="primary" name="newPeriod" onClick={this.handleClick}>New Period</Button></div>
             </div>
           ) : <this.AuthButtons /> }
 

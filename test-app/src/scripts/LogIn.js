@@ -10,13 +10,15 @@ class LogIn extends Component {
     this.state = {
       email: '',
       password: '',
-      redirect: false
+      redirect: false,
+      message: ''
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
+    e.preventDefault();
     // POST form data
     axios.post('/api/auth/login', {
       email: this.state.email,
@@ -24,12 +26,15 @@ class LogIn extends Component {
     })
     .then( (response) => {
       console.log(response);
+      if (response.data.success) {
+        this.setState({ redirect: true });
+      }
     })
     .catch( (error) => {
-      console.log(error);
+      console.log(error.response);
+      this.setState({ message: 'Invalid credentials'});
     });
-    // redirect to home
-    this.setState({ redirect: true });
+    
   }
 
   renderRedirect = () => {
@@ -44,10 +49,11 @@ class LogIn extends Component {
 
   render() {
     return (
-      <div className="login">
+      <div className="login body">
       {this.renderRedirect()}
       <h1>Log In</h1>
 
+      <p className="errorMessage">{this.state.message}</p>
         <form onSubmit={this.handleSubmit}>
 
           <label>

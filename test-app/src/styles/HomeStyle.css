@@ -11,11 +11,6 @@
   min-width: 10%;
 }
 
-.data {
-  /* display: flex;
-  justify-content: center;
-  align-items: center; */
-}
 
 .row {
   display: flex;
@@ -23,8 +18,43 @@
   margin: 2%;
 }
 
-.moneyValues p {
-  display: inline;
-  margin-left: 5%;
-  margin-right: 5%;
+.periodData {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.moneyData {
+  float: left;
+  display: flex;
+  vertical-align: center;
+  margin-right: 10%;
+  font-size: 1.8em;
+}
+
+.moneyData .moneyLabels {
+  float: left;
+  white-space: nowrap;
+  margin-right: 7%;
+}
+
+.moneyData .moneyValues {
+  float: right;
+}
+
+.makeBlue {
+  color: #1CC4ED;
+}
+
+.makeOrange {
+  color: orange;
+}
+
+.periodData {
+  display: flex;
+  align-items: center;
+}
+
+.pieChart {
+  float: right;
 }

@@ -36,7 +36,7 @@ class LogOut extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="lougout body">
         {this.renderRedirect()}
       </div>
     );

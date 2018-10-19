@@ -25,7 +25,7 @@ class Navbar extends Component {
   render() {
     return (
       <HashRouter>
-        <div className="App">
+        <div className="navbar">
           <header className="App-header">
             <div className="topnav">
               <NavLink to="/">Home</NavLink>

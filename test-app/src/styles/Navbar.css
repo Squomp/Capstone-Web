@@ -1,5 +1,5 @@
 .topnav {
-    background-color: #1E97FF;
+    background-color: #1C50C4;
     overflow: hidden;
 }
 
@@ -13,6 +13,11 @@
 }
 
 .topnav a:hover {
-    background-color: #AFE3FF;
+    background-color: #1CC4ED;
     color: black;
 }
+
+/* Home is always "active" for some reason */
+/* .topnav .active {
+    background-color: lightblue;
+}  */
