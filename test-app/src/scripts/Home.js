@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import '../styles/Home.css';
+import '../styles/HomeStyle.css';
 import axios from 'axios';
+import CanvasJS from 'canvasjs';
 
 class Home extends Component {
 
@@ -59,7 +60,7 @@ class Home extends Component {
 
   AuthButtons() {
     return (
-      <div>
+      <div className="authButtons">
         <button name="login" onClick={this.handleClick}>Log In</button>
         <button name="signup" onClick={this.handleClick}>Sign Up</button>
       </div>
@@ -67,10 +68,39 @@ class Home extends Component {
   }
 
   PeriodData() {
+
+    const spent = this.state.data.period.spent;
+    const remaining = this.state.data.period.remaining;
+
+    const options = {
+			animationEnabled: true,
+			exportEnabled: true,
+			theme: "dark2", // "light1", "dark1", "dark2"
+			title:{
+				text: "Your Funds"
+			},
+			data: [{
+				type: "pie",
+				indexLabel: "{label}: {y}%",		
+				startAngle: -90,
+				dataPoints: [
+					{ y: spent, label: "Spent" },
+					{ y: 24, label: "Remaining" }
+				]
+			}]
+		}
+      {/*You can get reference to the chart instance as shown above using onRef. 
+      This allows you to access all chart properties and methods*/}
+
     return (
-      <div>
-        <p>{this.state.data.period.spent}</p>
-        <p>{this.state.data.period.remaining}</p>
+      <div className="periodData">
+        <div className="moneyValues">
+          <p>Money Spent: ${spent}</p>
+          <p>Money Remaining: ${remaining}</p>
+        </div>
+
+        <CanvasJSChart options = {options} 
+				  onRef={ref => this.chart = ref}/>
       </div>
     );
   }
@@ -78,18 +108,20 @@ class Home extends Component {
   render() {
     const data = this.state.data;
     return (
-      <div className="App">
+      <div className="home">
         { this.renderRedirect() }
-        { this.state.username ? <h1>Welcome, {this.state.username}</h1> : <h1>Log in or sign up to use features</h1> }
+        { this.state.username ? <h1>Welcome, {this.state.username}!</h1> : <h1>Log in or sign up to use features</h1> }
         { data !== undefined ?
           (
-            <div>
-              { data.period && <this.PeriodData />}
+            <div className="data">
+              <div className="row"><h2>Your Current Period</h2></div>
+              <div className="row">{ data.period ? <this.PeriodData /> : <h3>Start a new period</h3> }</div>
               {console.log(data.period)}
-              <br></br>
-              <button name="newPeriod" onClick={this.handleClick}>New Period</button>
+              <div className="row"><button name="newPeriod" onClick={this.handleClick}>New Period</button></div>
             </div>
           ) : <this.AuthButtons /> }
+
+          
       </div>
     );
   }

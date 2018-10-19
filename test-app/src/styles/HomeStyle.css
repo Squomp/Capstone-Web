@@ -1,0 +1,30 @@
+.authButtons {
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 90%;
+}
+
+.authButtons button {
+  margin: 10px;
+  font-size: 1.5em;
+  min-width: 10%;
+}
+
+.data {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+  margin: 2%;
+}
+
+.moneyValues p {
+  display: inline;
+  margin-left: 5%;
+  margin-right: 5%;
+}
