@@ -5,12 +5,11 @@
   max-width: 90%;
 }
 
-.authButtons button {
+.authButton {
   margin: 10px;
   font-size: 1.5em;
   min-width: 10%;
 }
-
 
 .row {
   display: flex;
@@ -57,4 +56,8 @@
 
 .pieChart {
   float: right;
+}
+
+.pieChart div svg {
+  padding: 7%;
 }

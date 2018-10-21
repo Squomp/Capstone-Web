@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import '../styles/HomeStyle.css';
 import axios from 'axios';
 import {VictoryPie } from 'victory';
 import Button from '@material-ui/core/Button';
-import { createMuiTheme } from '@material-ui/core/styles';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 
-const theme = createMuiTheme({
+const theme = createMuiTheme({ //
   palette: {
     primary: {
       light: '#208BDB',
@@ -31,7 +31,11 @@ class Home extends Component {
       data: undefined,
       username: '',
       redirectPath: '',
-      shouldRedirect: false
+      shouldRedirect: false,
+      pieData: [
+        { x: "Spent", y: 0 },
+        { x: "Remaining", y: 100 }
+      ]
     }
     this.handleClick = this.handleClick.bind(this);
     this.AuthButtons = this.AuthButtons.bind(this);
@@ -46,7 +50,11 @@ class Home extends Component {
     .then(axios.spread((financeRes, userRes) => {
         this.setState({
           data: financeRes.data.data,
-          username: userRes.data.data.user.username
+          username: userRes.data.data.user.username,
+          pieData: [
+            { x: "Spent", y: financeRes.data.data.period.spent },
+            { x: "Remaining", y: financeRes.data.data.period.remaining }
+          ]
         });
     }))
     .catch( (error) => {
@@ -61,7 +69,6 @@ class Home extends Component {
   }
 
   handleClick(e) {
-    if (e.target.name === 'newPeriod') {
       axios.post('/api/finance/period')
       .then( (response) => {
         console.log(response);
@@ -69,29 +76,36 @@ class Home extends Component {
       .catch( (error) => {
         console.log(error.response  );
       });
-    } else {
-      this.setState({
-        redirectPath: '/' + e.target.name ,
-        shouldRedirect: true
-      });
-    }
   }
 
   AuthButtons() {
+
+    const buttonStyle = {
+      fontSize: '1.5em', 
+      minWidth: '10%', 
+      margin: '10px'
+    };
+
     return (
       <div className="authButtons">
-        <Button variant="text" color="primary" name="login" onClick={this.handleClick}>Log In</Button>
-        <Button variant="text" color="primary" name="signup" onClick={this.handleClick}>Sign Up</Button>
+        <Button 
+          style={buttonStyle}
+             variant="text" color="primary" component={Link} to="/login">
+             Log In
+        </Button>
+        <Button 
+          style={buttonStyle} 
+            variant="text" color="primary" component={Link} to="/signup">
+            Sign Up
+        </Button>
       </div>
     );
   }
 
   PeriodData() {
-
     const spent = this.state.data.period.spent;
     const remaining = this.state.data.period.remaining;
 
-    
     return (
       <div className="periodData">
         <div className="moneyData">
@@ -106,10 +120,7 @@ class Home extends Component {
         </div>
         <div className="pieChart">
           <VictoryPie
-            data={[
-              { x: "Spent", y: spent },
-              { x: "Remaining", y: remaining }
-            ]}
+            data={this.state.pieData}
             animate={{ duration: 2000 }}
             colorScale={["orange", "#1CC4ED"]}
             />
@@ -122,6 +133,7 @@ class Home extends Component {
     const data = this.state.data;
     return (
       <div className="home body">
+        <MuiThemeProvider theme={theme}>
         { this.renderRedirect() }
         { this.state.username ? <h1>Welcome, {this.state.username}!</h1> : <h1>Log in or sign up to use features</h1> }
         { data !== undefined ?
@@ -134,7 +146,7 @@ class Home extends Component {
             </div>
           ) : <this.AuthButtons /> }
 
-          
+          </MuiThemeProvider>
       </div>
     );
   }
