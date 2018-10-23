@@ -14,7 +14,7 @@ class Log extends Component {
       isMoneyIn: false,
       amount: 0,
       desc: '',
-      dayOfWeek: '',
+      dayOfWeek: 'monday',
       dayOfMonth: moment()._d
     };
     this.handleChange = this.handleChange.bind(this);
@@ -91,14 +91,14 @@ class Log extends Component {
         <form onSubmit={this.handleSubmit}>
 
           <label>
-              <input class="input-field" type="radio" name="isMoneyIn" value="false" onClick={this.handleChange} />
+              <input class="input-field" type="radio" name="isMoneyIn" value={true} onClick={this.handleChange} />
               <span class="radio">
                 Money in
               </span>
           </label>
 
           <label>
-              <input class="input-field" type="radio" name="isMoneyIn" value="true" onClick={this.handleChange} />
+              <input class="input-field" type="radio" name="isMoneyIn" value={false} onClick={this.handleChange} />
               <span class="radio">
                 Money out
               </span>

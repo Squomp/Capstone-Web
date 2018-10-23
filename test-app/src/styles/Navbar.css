@@ -1,6 +1,9 @@
 .topnav {
     background-color: #1C50C4;
     overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%; 
 }
 
 .topnav a {
