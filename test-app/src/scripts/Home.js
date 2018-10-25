@@ -71,7 +71,7 @@ class Home extends Component {
   handleClick(e) {
       axios.post('/api/finance/period')
       .then( (response) => {
-        console.log(response);
+        this.render();
       })
       .catch( (error) => {
         console.log(error.response);
