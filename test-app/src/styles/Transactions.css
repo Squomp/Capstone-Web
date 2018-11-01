@@ -1,0 +1,12 @@
+.transactionList {
+    display: flex;
+    justify-content: center;
+}
+
+.transaction {
+    display: inline;
+}
+
+.top {
+    display: inline;
+}

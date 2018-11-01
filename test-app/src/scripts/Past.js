@@ -11,7 +11,6 @@ class Past extends Component {
         this.state = ({
             periods: []
         });
-        this.handleClick = this.handleClick.bind(this);
     }
 
     componentWillMount = () => {
@@ -24,19 +23,13 @@ class Past extends Component {
             })
     }
 
-    handleClick = (e) => {
-        console.log('clicked');
-    }
-
     render() {
         const periods = this.state.periods;
-        console.log(periods);
-        // console.log(moment(periods[0].start_date));
         return (
             <div className="past body">
                 <h1>Past Periods</h1>
                 <div className="periods">
-                    {periods.map(p => <Period key={p.period_id} period={p} onClick={this.handleClick} />)}
+                    {periods.map(p => <Period key={p.period_id} period={p} url={'/transactions/' + p.period_id}/>)}
                 </div>
             </div>
         );
@@ -44,7 +37,7 @@ class Past extends Component {
 }
 
 const Period = (props) => (
-    <Link to="/transactions">
+    <Link to={props.url} >
         <div className="period">
             <div className="vertical">
                 <p className="left">Start date: {moment(props.period.start_date).format('MM[/]DD[/]YYYY')}</p>

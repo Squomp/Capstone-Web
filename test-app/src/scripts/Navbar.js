@@ -13,7 +13,7 @@ import LogIn from "./LogIn";
 import LogOut from "./LogOut";
 import Plan from "./Plan";
 import Past from "./Past";
-import Transactions from "./Transactions";
+import Transactions from "./Transactions.js";
 
 class Navbar extends Component {
 
@@ -45,7 +45,7 @@ class Navbar extends Component {
             <Route path="/signup" component={SignUp}/>
             <Route path="/login" component={LogIn}/>
             <Route path="/logout" component={LogOut}/>
-            {/* <Route path="/transactions" component={Transactions}/> */}
+            <Route exact path="/transactions/:pId" component={Transactions}/>
           </header>
         </div>
       </HashRouter>

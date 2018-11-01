@@ -3,6 +3,11 @@ import '../styles/App.css';
 import Navbar from './Navbar.js';
 
 class App extends Component {
+
+  componentDidMount = () => {
+    document.title = "Mo Money";
+  }
+
   render() {
     return (
       <div className="App">
