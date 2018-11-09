@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 class Plan extends Component {
@@ -8,7 +7,8 @@ class Plan extends Component {
     super();
     this.state = {
       period: 'weekly',
-      amount: 0
+      amount: 0,
+      startDay: 'monday'
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,17 +18,20 @@ class Plan extends Component {
     // POST form data
     axios.post('/api/finance/plan', {
       amount: this.state.amount,
-      period: this.state.period
+      period: this.state.period,
+      firstDay: this.state.startDay
     })
-    .then( (response) => {
-      console.log(response);
-    })
-    .catch( (error) => {
-      console.log(error);
-    });
+      .then((response) => {
+        console.log(response);
+        let path = `/`;
+        this.props.history.push(path);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -54,7 +57,22 @@ class Plan extends Component {
             </select>
           </label>
 
-          <input type="submit" value="Submit"/>
+          <label>
+            <span>
+              Start Day:
+            </span>
+            <select class="select-field" name="startDay" onChange={this.handleChange}>
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+            </select>
+          </label>
+
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );

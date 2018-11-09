@@ -5,7 +5,7 @@ import Navbar from './Navbar.js';
 class App extends Component {
 
   componentDidMount = () => {
-    document.title = "Mo Money";
+    document.title = "Easy Money";
   }
 
   render() {

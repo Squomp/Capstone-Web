@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import '../styles/LogIn.css';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 class LogIn extends Component {
 
-  constructor () {
+  constructor() {
     super();
     this.state = {
       email: '',
       password: '',
-      redirect: false,
       message: ''
     };
     this.handleChange = this.handleChange.bind(this);
@@ -24,36 +21,26 @@ class LogIn extends Component {
       email: this.state.email,
       password: this.state.password
     })
-    .then( (response) => {
-      console.log(response);
-      if (response.data.success) {
-        this.setState({ redirect: true });
-      }
-    })
-    .catch( (error) => {
-      console.log(error.response);
-      this.setState({ message: 'Invalid credentials'});
-    });
-    
+      .then((response) => {
+        console.log(response);
+        this.props.callBack();
+      })
+      .catch((error) => {
+        console.log(error.response);
+        this.setState({ message: 'Invalid credentials' });
+      });
+
   }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/' />
-    }
-  }
-
-  handleChange (e) {
+  handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     return (
       <div className="login body">
-      {this.renderRedirect()}
-      <h1>Log In</h1>
-
-      <p className="errorMessage">{this.state.message}</p>
+        <h1>Log In</h1>
+        <p className="errorMessage">{this.state.message}</p>
         <form onSubmit={this.handleSubmit}>
 
           <label>
@@ -70,7 +57,7 @@ class LogIn extends Component {
             <input type="password" class="input-field" name="password" onChange={this.handleChange} />
           </label>
 
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );

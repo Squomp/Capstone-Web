@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
 
-  constructor () {
+  constructor() {
     super();
     this.state = {
       username: '',
       email: '',
       password: '',
-      redirect: false,
       message: ''
     };
     this.handleChange = this.handleChange.bind(this);
@@ -25,33 +23,24 @@ class SignUp extends Component {
       email: this.state.email,
       password: this.state.password
     })
-    .then(function (response) {
-      console.log(response);
-      if (response.data.success) {
-        this.setState({ redirect: true });
-      }
-    })
-    .catch(function (error) {
-      console.log(error.response);
-      this.setState({ message: 'Failed to create account'});
-    });
+      .then(function (response) {
+        console.log(response);
+        this.props.callBack();
+      })
+      .catch(function (error) {
+        console.log(error.response);
+        this.setState({ message: 'Failed to create account' });
+      });
     // redirect to home
   }
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to='/' />
-    }
-  }
-
-  handleChange (e) {
+  handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
     return (
       <div className="signup body">
-        {this.renderRedirect()}
         <h1>Sign Up</h1>
         <p className="errorMessage">{this.state.message}</p>
         <form onSubmit={this.handleSubmit}>
@@ -76,7 +65,7 @@ class SignUp extends Component {
             <input type="password" class="input-field" name="password" onChange={this.onChange} />
           </label>
 
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );

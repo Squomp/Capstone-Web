@@ -1,26 +1,28 @@
 .topnav {
-    background-color: #1C50C4;
-    overflow: hidden;
+    background-color: #22382C;
+    overflow-x: hidden;
     position: fixed;
+    z-index: 9000;
     top: 0;
-    width: 100%; 
+    left: 0;
+    width: 10%;
+    margin: 2%;
 }
 
 .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
+    color: lightgray;
+    display: block;
+    padding: 6px 8px 6px 16px;
     text-decoration: none;
-    font-size: 17px;
+    font-size: 20px;
+    height: 100%;
 }
 
 .topnav a:hover {
-    background-color: #1CC4ED;
-    color: black;
+    background-color: lightgray;
+    color: #22382C;
 }
 
-/* Home is always "active" for some reason */
-/* .topnav .active {
-    background-color: lightblue;
-}  */
+.topnav .active {
+    background-color: #339E21;
+} 

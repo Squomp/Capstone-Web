@@ -7,7 +7,7 @@ import moment from 'moment';
 
 class Log extends Component {
 
-  constructor () {
+  constructor() {
     super();
     this.state = {
       isWeekly: true,
@@ -34,15 +34,17 @@ class Log extends Component {
       date: this.state.dayOfMonth,
       isIncome: this.state.isMoneyIn
     })
-    .then( (response) => {
-      console.log(response);
-    })
-    .catch( (error) => {
-      console.log(error.response);
-    });
+      .then((response) => {
+        console.log(response);
+        let path = `/`;
+        this.props.history.push(path);
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
   }
 
-  handleChange (e) {
+  handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -52,22 +54,22 @@ class Log extends Component {
 
   WeeklySection() {
     return (
-        <div>
-          <label>
-            <span>
-              Day of the week:
+      <div>
+        <label>
+          <span>
+            Day of the week:
             </span>
-            <select class="select-field" name="dayOfWeek" onChange={this.handleChange}>
-              <option value="monday">Monday</option>
-              <option value="tuesday">Tuesday</option>
-              <option value="wednesday">Wednesday</option>
-              <option value="thursday">Thursday</option>
-              <option value="friday">Friday</option>
-              <option value="saturday">Saturday</option>
-              <option value="sunday">Sunday</option>
-            </select>
-          </label>
-        </div>
+          <select class="select-field" name="dayOfWeek" onChange={this.handleChange}>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
+          </select>
+        </label>
+      </div>
     );
   }
 
@@ -76,8 +78,8 @@ class Log extends Component {
       <div>
         <label>
           Day of the month: <DatePicker
-                            selected={this.state.dayOfMonth}
-                            onSelect={this.handleDateSelect} />
+            selected={this.state.dayOfMonth}
+            onSelect={this.handleDateSelect} />
         </label>
       </div>
     );
@@ -91,16 +93,16 @@ class Log extends Component {
         <form onSubmit={this.handleSubmit}>
 
           <label>
-              <input class="input-field" type="radio" name="isMoneyIn" value={true} onClick={this.handleChange} />
-              <span class="radio">
-                Money in
+            <input class="input-field" type="radio" name="isMoneyIn" value={true} onClick={this.handleChange} />
+            <span class="radio">
+              Money in
               </span>
           </label>
 
           <label>
-              <input class="input-field" type="radio" name="isMoneyIn" value={false} onClick={this.handleChange} />
-              <span class="radio">
-                Money out
+            <input class="input-field" type="radio" name="isMoneyIn" value={false} onClick={this.handleChange} />
+            <span class="radio">
+              Money out
               </span>
           </label>
 
@@ -118,9 +120,9 @@ class Log extends Component {
             <input type="text" class="input-field" name="desc" maxLength="50" onChange={this.handleChange} />
           </label>
 
-          { this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection /> }
+          {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection />}
           <br></br>
-          <input type="submit" value="Submit"/>
+          <input type="submit" value="Submit" />
         </form>
       </div>
     );

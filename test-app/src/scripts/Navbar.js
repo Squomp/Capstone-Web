@@ -4,12 +4,10 @@ import '../styles/GlobalStyle.css';
 import {
   Route,
   NavLink,
-  HashRouter
+  HashRouter,
 } from "react-router-dom";
 import Home from "./Home";
 import Log from "./Log";
-import SignUp from "./SignUp";
-import LogIn from "./LogIn";
 import LogOut from "./LogOut";
 import Plan from "./Plan";
 import Past from "./Past";
@@ -30,22 +28,18 @@ class Navbar extends Component {
         <div className="navbar">
           <header className="App-header">
             <div className="topnav">
-              <NavLink to="/">Home</NavLink>
+              <img src='/piggybank.png' style={{ width:'20%', height:'20%', padding:'4%', float: 'right' }}/>
+              <NavLink exact to="/">Home</NavLink>
               <NavLink to="/plan">Plan</NavLink>
               <NavLink to="/log">Log</NavLink>
               <NavLink to="/past">Past</NavLink>
-              <NavLink to="/signup">Sign Up</NavLink>
-              <NavLink to="/login">Log In</NavLink>
               <NavLink to="/logout">Log Out</NavLink>
             </div>
             <Route exact path="/" component={Home}/>
             <Route path="/plan" component={Plan}/>
             <Route path="/log" component={Log}/>
             <Route path="/past" component={Past}/>
-            <Route path="/signup" component={SignUp}/>
-            <Route path="/login" component={LogIn}/>
             <Route path="/logout" component={LogOut}/>
-            <Route exact path="/transactions/:pId" component={Transactions}/>
           </header>
         </div>
       </HashRouter>

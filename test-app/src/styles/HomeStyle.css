@@ -19,45 +19,84 @@
 
 .periodData {
   width: 100%;
-  display: flex;
-  justify-content: center;
+  float: left;
 }
 
 .moneyData {
-  float: left;
-  display: flex;
-  vertical-align: center;
-  margin-right: 10%;
+  margin: 0 auto;
   font-size: 1.8em;
-}
-
-.moneyData .moneyLabels {
-  float: left;
   white-space: nowrap;
-  margin-right: 7%;
 }
 
-.moneyData .moneyValues {
-  float: right;
+.moneyLabel {
+  width: 50%;
+  text-align: center;
 }
+
 
 .makeBlue {
+  display: block;
+  float: right;
   color: #1CC4ED;
 }
 
 .makeOrange {
+  display: block;
+  float: left;
   color: orange;
 }
 
-.periodData {
-  display: flex;
-  align-items: center;
-}
+/* .pieChart .VicrotyContainer svg {
+  padding: 10%;
+} */
 
 .pieChart {
+  height: 80%;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.transHeader {
+  text-align: center;
+}
+
+.auth {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.authContainer {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.login {
+  float: left;
+}
+
+.signup {
   float: right;
 }
 
-.pieChart div svg {
-  padding: 7%;
+.transList {
+  width: 50%;
+  margin: 0 auto;
 }
+
+.treeImg {
+  float: right;
+  width: 35%;
+  background-image: url('/tree.png');
+  background-size: cover;
+}
+
+.mainContainer {
+  display: flex;
+  width: 100%;
+}
+
+/* .data {
+  float: left;
+  width: 80%;
+} */
