@@ -196,12 +196,12 @@ class Home extends Component {
                   <h2 style={{ textAlign: 'center' }}>Start a New Period</h2>
                   <div className='row'>
                     <span className='datePicker'>
-                      Start Date: <DatePicker
+                      Start Date <DatePicker
                         selected={this.state.startDate}
                         onSelect={(date) => { this.setState({ startDate: date }) }} />
                     </span>
                     <span className='datePicker'>
-                      End Date: <DatePicker
+                      End Date <DatePicker
                         selected={this.state.endDate}
                         onSelect={(date) => { this.setState({ endDate: date }) }} />
                     </span>
