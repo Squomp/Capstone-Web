@@ -14,12 +14,16 @@
 .row {
   display: flex;
   justify-content: center;
-  margin: 2%;
+  margin: 2% 0;
 }
 
 .periodData {
   width: 100%;
   float: left;
+}
+
+.periodData h2 {
+  text-align: center;
 }
 
 .moneyData {
@@ -45,10 +49,6 @@
   float: left;
   color: orange;
 }
-
-/* .pieChart .VicrotyContainer svg {
-  padding: 10%;
-} */
 
 .pieChart {
   height: 80%;
@@ -96,7 +96,15 @@
   width: 100%;
 }
 
-/* .data {
-  float: left;
+.logContainer {
+  width: 85%;
+}
+
+.transContainer {
+  margin: 0 auto;
   width: 80%;
-} */
+}
+
+.datePicker {
+  margin: 2%;
+}

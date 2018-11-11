@@ -7,17 +7,17 @@
 .left {
   float: left;
   text-align: left;
-  width: 33%;
+  width: 25%;
 }
 
 .right {
   float: right;
   text-align: right;
-  width: 33%;
+  width: 30%;
 }
 
 .center {
   margin: 0 auto;
-  width: 33%;
+  width: 45%;
   text-align: center;
 }

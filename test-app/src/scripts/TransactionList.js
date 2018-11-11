@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/TransactionList.css';
+import moment from 'moment';
 
 class TransactionList extends Component {
 
@@ -18,7 +19,7 @@ const Transaction = (props) => (
     <div className="transaction">
         <div className="left">${props.transaction.amount}</div>
         <div className="right">{props.transaction.description}</div>
-        <div className="center">{props.transaction.day_of_week}</div>
+        <div className="center">{moment(props.transaction.date).format('dddd')} {moment(props.transaction.date).format('MM/DD')}</div>
     </div>
 )
 

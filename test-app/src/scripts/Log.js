@@ -7,18 +7,17 @@ import moment from 'moment';
 
 class Log extends Component {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       isWeekly: true,
-      isMoneyIn: false,
+      isMoneyIn: undefined,
       amount: 0,
       desc: '',
       dayOfWeek: 'monday',
-      dayOfMonth: moment()._d
+      date: moment()
     };
     this.handleChange = this.handleChange.bind(this);
-    this.handleDateSelect = this.handleDateSelect.bind(this);
     this.WeeklySection = this.WeeklySection.bind(this);
     this.MonthlySection = this.MonthlySection.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,13 +30,14 @@ class Log extends Component {
       amount: this.state.amount,
       description: this.state.desc,
       dayOfWeek: this.state.dayOfWeek,
-      date: this.state.dayOfMonth,
+      date: this.state.date.format('YYYY-MM-DD'),
       isIncome: this.state.isMoneyIn
     })
       .then((response) => {
+        this.props.callBack();
         console.log(response);
-        let path = `/`;
-        this.props.history.push(path);
+        // let path = `/`;
+        // this.props.history.push(path);
       })
       .catch((error) => {
         console.log(error.response);
@@ -46,10 +46,6 @@ class Log extends Component {
 
   handleChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  }
-
-  handleDateSelect(date) {
-    this.setState({ ['dayOfMonth']: date });
   }
 
   WeeklySection() {
@@ -88,29 +84,31 @@ class Log extends Component {
   render() {
 
     return (
-      <div className="log body">
+      <div className="log">
         <h1>Log a Transaction</h1>
         <form onSubmit={this.handleSubmit}>
 
-          <label>
+          <div className='radioButtons'>
+            {/* <label> */}
             <input class="input-field" type="radio" name="isMoneyIn" value={true} onClick={this.handleChange} />
             <span class="radio">
               Money in
               </span>
-          </label>
+            {/* </label> */}
 
-          <label>
+            {/* <label> */}
             <input class="input-field" type="radio" name="isMoneyIn" value={false} onClick={this.handleChange} />
             <span class="radio">
               Money out
               </span>
-          </label>
+            {/* </label> */}
+          </div>
 
           <label>
             <span>
-              Amount
+              Amount $
             </span>
-            $<input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
+            <input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
           </label>
 
           <label>
@@ -120,7 +118,15 @@ class Log extends Component {
             <input type="text" class="input-field" name="desc" maxLength="50" onChange={this.handleChange} />
           </label>
 
-          {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection />}
+          {/* {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection />} */}
+          <label>
+            <span>
+              Date of Transaction
+              </span>
+            <DatePicker
+              selected={this.state.date}
+              onSelect={((date) => this.setState({ date: date }))} />
+          </label>
           <br></br>
           <input type="submit" value="Submit" />
         </form>

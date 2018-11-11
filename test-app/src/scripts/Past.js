@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/Past.css';
 import moment from 'moment';
 import TransactionList from './TransactionList';
-
 class Past extends Component {
 
     constructor() {
@@ -61,7 +59,7 @@ class Past extends Component {
                         <div className="body">
                             <h1>Transactions</h1>
                             {transactions.length > 0 ?
-                                <div className='transList'>
+                                <div className='transactionList'>
                                     <TransactionList transactions={transactions} />
                                 </div>
                                 : <p>No transactions in selected period</p>

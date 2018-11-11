@@ -43,9 +43,9 @@ class Plan extends Component {
         <form onSubmit={this.handleSubmit}>
           <label>
             <span>
-              Amount
+              Amount $
             </span>
-            $<input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
+            <input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
           </label>
 
           <label>
@@ -59,7 +59,7 @@ class Plan extends Component {
 
           <label>
             <span>
-              Start Day:
+              Start Day
             </span>
             <select class="select-field" name="startDay" onChange={this.handleChange}>
               <option value="monday">Monday</option>
