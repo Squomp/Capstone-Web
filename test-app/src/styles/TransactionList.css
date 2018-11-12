@@ -1,23 +1,28 @@
 .transaction {
   width: 100%;
   margin: 0 auto;
-  padding: 5% 0;
+  padding: 7% 0;
 }
 
 .left {
   float: left;
   text-align: left;
-  width: 25%;
+  width: 33%;
 }
 
 .right {
   float: right;
   text-align: right;
-  width: 30%;
+  width: 33%;
 }
 
 .center {
-  margin: 0 auto;
-  width: 45%;
+  /* margin: 0 auto; */
+  width: 33%;
   text-align: center;
+}
+
+hr {
+  color: lightgray;
+  width: 70%;
 }

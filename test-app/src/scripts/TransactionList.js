@@ -17,9 +17,10 @@ class TransactionList extends Component {
 
 const Transaction = (props) => (
     <div className="transaction">
-        <div className="left">${props.transaction.amount}</div>
-        <div className="right">{props.transaction.description}</div>
-        <div className="center">{moment(props.transaction.date).format('dddd')} {moment(props.transaction.date).format('MM/DD')}</div>
+        <span className="left">${props.transaction.amount}</span>
+        <span className="right">{props.transaction.description}</span>
+        <span className="center">{moment(props.transaction.date).format('dddd')} {moment(props.transaction.date).format('MM/DD')}</span>
+        <hr></hr>
     </div>
 )
 

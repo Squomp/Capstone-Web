@@ -18,7 +18,7 @@
 }
 
 .periodData {
-  width: 100%;
+  width: 80%;
   float: left;
 }
 
@@ -37,7 +37,6 @@
   text-align: center;
 }
 
-
 .makeBlue {
   display: block;
   float: right;
@@ -51,13 +50,9 @@
 }
 
 .pieChart {
-  height: 80%;
-  width: 80%;
+  height: 50%;
+  width: 50%;
   margin: 0 auto;
-}
-
-.transHeader {
-  text-align: center;
 }
 
 .auth {
@@ -79,11 +74,6 @@
   float: right;
 }
 
-.transList {
-  width: 50%;
-  margin: 0 auto;
-}
-
 .treeImg {
   float: right;
   width: 35%;
@@ -94,15 +84,6 @@
 .mainContainer {
   display: flex;
   width: 100%;
-}
-
-.logContainer {
-  width: 85%;
-}
-
-.transContainer {
-  margin: 0 auto;
-  width: 80%;
 }
 
 .datePicker {

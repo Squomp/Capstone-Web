@@ -1,0 +1,16 @@
+.transactions {
+    display: flex;
+}
+
+.transList {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.logContainer {
+    width: 50%;
+}
+  
+.transHeader {
+    text-align: center;
+}
