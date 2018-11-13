@@ -34,13 +34,19 @@ class Log extends Component {
       isIncome: this.state.isMoneyIn
     })
       .then((response) => {
-        this.props.callBack();
+        this.setState({
+          isMoneyIn: undefined,
+          amount: 0,
+          desc: '',
+          data: moment()
+        })
+        this.props.callBack(this.props.pId);
         console.log(response);
         // let path = `/`;
         // this.props.history.push(path);
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error);
       });
   }
 

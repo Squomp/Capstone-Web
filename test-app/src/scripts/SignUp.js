@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 class SignUp extends Component {
 
@@ -11,31 +12,36 @@ class SignUp extends Component {
       password: '',
       message: ''
     };
-    this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleSubmit(e) {
+    // e.preventDefault();
+    console.log(this.state.username);
     // POST form data
-    var url = '/api/auth/register';
-    axios.post(url, {
+    axios.post('/api/auth/register', {
       username: this.state.username,
       email: this.state.email,
       password: this.state.password
     })
-      .then(function (response) {
+      .then((response) => {
         console.log(response);
-        this.props.callBack();
+        axios.post('/api/finance/period', {
+          start_date: moment().format('YYYY-MM-DD'),
+          end_date: moment().add(7, 'days').format('YYYY-MM-DD'),
+          amount: 50
+        })
+          .then((response) => {
+            this.props.callBack();
+          })
+          .catch((error) => {
+            console.log(error.response);
+          });
       })
-      .catch(function (error) {
+      .catch((error) => {
         console.log(error.response);
         this.setState({ message: 'Failed to create account' });
       });
-    // redirect to home
-  }
-
-  handleChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -48,21 +54,24 @@ class SignUp extends Component {
             <span>
               Username
             </span>
-            <input type="text" class="input-field" name="username" onChange={this.handlChange} />
+            <input type="text" class="input-field" name="username"
+              onChange={(username) => { this.setState({ username }) }} />
           </label>
 
           <label>
             <span>
               Email
             </span>
-            <input type="text" class="input-field" name="email" onChange={this.onChange} />
+            <input type="text" class="input-field" name="email"
+              onChange={(email) => { this.setState({ email }) }} />
           </label>
 
           <label>
             <span>
               Password
             </span>
-            <input type="password" class="input-field" name="password" onChange={this.onChange} />
+            <input type="password" class="input-field" name="password"
+              onChange={(password) => { this.setState({ password }) }} />
           </label>
 
           <input type="submit" value="Submit" />

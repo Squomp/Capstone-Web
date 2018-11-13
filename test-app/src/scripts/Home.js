@@ -27,7 +27,6 @@ class Home extends Component {
     this.LoginSignUp = this.LoginSignUp.bind(this);
     this.getData = this.getData.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
-    this.getTransactions = this.getTransactions.bind(this);
   }
 
   getData() {
@@ -48,23 +47,10 @@ class Home extends Component {
             { x: '$' + financeRes.data.data.period.remaining, y: financeRes.data.data.period.remaining }
           ]
         });
-        this.getTransactions();
       }))
       .catch((error) => {
         console.log(error.response);
       });
-  }
-
-  getTransactions() {
-    axios.post('/api/finance/transactions', { periodId: this.state.pId })
-      .then((response) => {
-        this.setState({
-          transactions: response.data.data.transactions
-        });
-      })
-      .catch((error) => {
-        console.log(error.response);
-      })
   }
 
   componentDidMount = () => {

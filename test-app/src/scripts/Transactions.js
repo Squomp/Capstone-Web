@@ -7,12 +7,13 @@ import moment from 'moment';
 
 class Transactions extends Component {
 
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             transactions: [],
             startDate: moment().format('MM/DD'),
             endDate: moment().format('MM/DD'),
+            periodId: 0,
         }
         this.getTransactions = this.getTransactions.bind(this);
     }
@@ -23,6 +24,7 @@ class Transactions extends Component {
                 this.setState({
                     startDate: moment(response.data.data.period.start_date).format('MM/DD'),
                     endDate: moment(response.data.data.period.end_date).format('MM/DD'),
+                    periodId: response.data.data.period.period_id
                 })
                 this.getTransactions(response.data.data.period.period_id);
             })
@@ -44,8 +46,7 @@ class Transactions extends Component {
     }
 
     update() {
-        let path = `/`;
-        this.props.history.push(path);
+        this.getTransactions(this.state.periodId);
     }
 
     render() {
@@ -57,7 +58,7 @@ class Transactions extends Component {
                     <TransactionList transactions={this.state.transactions} />
                 </div>
                 <div className='logContainer'>
-                    <Log callBack={this.update} />
+                    <Log callBack={this.getTransactions} pId={this.state.periodId}/>
                 </div>
             </div>
         );

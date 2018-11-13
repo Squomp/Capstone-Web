@@ -15,9 +15,19 @@ class TransactionList extends Component {
     }
 }
 
+const MoneyIn = (props) => (
+    <span className='left green'>+${props.transaction.amount}</span>
+)
+
+const MoneyOut = (props) => (
+    <span className='left red'>-${props.transaction.amount}</span>
+)
+
 const Transaction = (props) => (
     <div className="transaction">
-        <span className="left">${props.transaction.amount}</span>
+        {props.transaction.income ?
+            <MoneyIn transaction={props.transaction} />
+            : <MoneyOut transaction={props.transaction} />}
         <span className="right">{props.transaction.description}</span>
         <span className="center">{moment(props.transaction.date).format('dddd')} {moment(props.transaction.date).format('MM/DD')}</span>
         <hr></hr>
