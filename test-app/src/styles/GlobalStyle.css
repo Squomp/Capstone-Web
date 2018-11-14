@@ -67,8 +67,8 @@ input[type=button]{
 	border-radius: 3px;
 	background-color: #ebebeb;
 	width: 80%;
-	margin: 3% auto;
-	margin-left: 14%;
+	margin: 0 auto;
+	/* margin-left: 13%; */
 	padding: 3% 0 3% 0;
 }
 

@@ -1,14 +1,20 @@
 .topnav {
     background-color: #22382C;
-    overflow-x: hidden;
-    position: fixed;
-    z-index: 9000;
-    top: 0;
-    left: 0;
-    width: 10%;
+    /* background-color: #339E21; */
+    /* overflow-x: hidden; */
+    /* position: fixed; */
+    /* z-index: 9000; */
+    /* top: 0;
+    left: 0; */
+    height: 100%;
+    width: 13%;
     min-width: 130px;
-    margin: 2%;
-    margin-top: 12%;
+    /* margin: 2%; */
+    /* margin-top: 150px; */
+}
+
+.topnav.fixed {
+    position: fixed;
 }
 
 .topnav a {
@@ -17,7 +23,7 @@
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 20px;
-    height: 100%;
+    /* height: 100%; */
 }
 
 .topnav a:hover {
@@ -27,4 +33,40 @@
 
 .topnav .active {
     background-color: #339E21;
+    /* background-color: #22382C; */
 } 
+
+#piggyBank {
+    width: 25px;
+    height: 25px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+    background-image: url('/piggybank.png');
+    background-size: cover;
+}
+
+#sidebar {
+    background-color: #22382C;
+}
+
+.sidebarBtn {
+    margin: 8px;
+    width: 25px;
+    height: 25px;
+    text-decoration: none;
+    font-size: 20px;
+    border: none;
+}
+
+.collapseBtn {
+    background-color: #22382C;
+    background-image: url('/x.png');
+    background-size: cover;
+}
+
+.openBtn {
+    background-color: #339E21;
+    background-image: url('/menu.png');
+    background-size: cover;
+}

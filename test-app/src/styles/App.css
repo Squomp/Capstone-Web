@@ -1,7 +1,9 @@
 #titlebar {
     display: flex;
     align-content: center;
-    background-color: #339e21;
+    background: #339e21;
+    background: -webkit-linear-gradient(to right, #339e21, #22382C);
+    background: linear-gradient(to right, #339e21, #22382C);
     width: 100%;
     height: 100px;
     /* background-image: url('/title.png');
@@ -11,7 +13,7 @@
 #title {
     font-family: 'Caveat', cursive;
     font-size: 4.8em;
-    margin: 0 auto;
+    margin-left: 15%;
     font-weight: bold;
 }
 
