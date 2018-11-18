@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import '../styles/Transactions.css';
 import TransactionList from './TransactionList.js';
+import TransactionLineGraph from './TransactionLineGraph.js';
 import Log from './Log.js';
 import axios from 'axios';
 import moment from 'moment';
@@ -51,13 +52,16 @@ class Transactions extends Component {
 
     render() {
 
+        const transactions = this.state.transactions;
+
         return (
             <div className='transactions body'>
                 <div className='transList'>
                     <h2 className="transHeader">{this.state.startDate} - {this.state.endDate}</h2>
-                    <TransactionList transactions={this.state.transactions} />
+                    <TransactionList transactions={transactions} />
                 </div>
                 <div className='logContainer'>
+                    <TransactionLineGraph transactions={transactions} />
                     <Log callBack={this.getTransactions} pId={this.state.periodId}/>
                 </div>
             </div>

@@ -75,27 +75,31 @@ class Home extends Component {
     const spent = this.state.data.period.spent;
     const remaining = this.state.data.period.remaining;
     const amount = this.state.data.period.amount;
-    console.log(amount);
     return (
       <div style={{ width: '100%', padding: '5% 0' }}>
         <div className='mainContainer'>
           <div className="periodData">
             <h2>Current Period for {this.state.currStartDate} to {this.state.currEndDate}</h2>
-            <h3 style={{ textAlign: 'center' }}>Today's date is {moment().format('dddd MM/DD')}</h3>
-            <div className="moneyData">
-              <span className="moneyLabel makeOrange">Spent: ${spent}</span>
-              <span className="moneyLabel makeBlue">Remaining: ${remaining}</span>
+            <h3>Today's date is {moment().format('dddd MM/DD')}</h3>
+            <div className='data'>
+              <div className="pieChart">
+                <VictoryPie
+                  data={this.state.pieData}
+                  // to not show labels
+                  // labels={() => null}
+                  animate={{
+                    duration: 2000,
+                    onLoad: { duration: 1000 }
+                  }}
+                  colorScale={["#AB0D26", "#339E21"]}
+                />
+              </div>
+              <div className="moneyData">
+                <p className="moneyLabel makeRed">Spent: ${spent}</p>
+                <p className="moneyLabel makeGreen">Remaining: ${remaining}</p>
+              </div>
             </div>
-            <div className="pieChart">
-              <VictoryPie
-                data={this.state.pieData}
-                // to not show labels
-                // labels={() => null}
-                animate={{ duration: 2000 }}
-                colorScale={["orange", "#1CC4ED"]}
-              />
-            </div>
-            <NewPeriod amount={amount}/>
+            <NewPeriod amount={amount} />
           </div>
           <div className='treeImg'>
 
@@ -114,12 +118,12 @@ class Home extends Component {
     const loggedIn = this.state.loggedIn;
     return (
       <div className="home body">
-        {this.state.username ? <h1>Welcome, {this.state.username}!</h1> : <h1>Log in or sign up to use features</h1>}
+        {this.state.username ? <h1 style={{ textAlign: 'center' }}>Welcome, {this.state.username}!</h1> : <h1>Log in or sign up to use features</h1>}
         {loggedIn ?
           (
             <div>
               <div className="data">
-                <div className="row">{data.period ? <this.PeriodData /> : <NewPeriod amount={50} />}</div>
+                {data.period ? <this.PeriodData /> : <NewPeriod amount={50} />}
               </div>
             </div>
           ) : <this.LoginSignUp />}

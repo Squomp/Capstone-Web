@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/Log.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import moment from 'moment';
 
 class Log extends Component {
@@ -92,53 +93,69 @@ class Log extends Component {
     return (
       <div className="log">
         <h1>Log a Transaction</h1>
+      <MuiThemeProvider theme={theme}>
         <form onSubmit={this.handleSubmit}>
-
           <div className='radioButtons'>
-            {/* <label> */}
-            <input class="input-field" type="radio" name="isMoneyIn" value={true} onClick={this.handleChange} />
-            <span class="radio">
-              Money in
+            <div>
+              <input className="input-field" type="radio" name="isMoneyIn" value={true} onClick={this.handleChange} />
+              <span class="radio">
+                Money in
               </span>
-            {/* </label> */}
-
-            {/* <label> */}
-            <input class="input-field" type="radio" name="isMoneyIn" value={false} onClick={this.handleChange} />
-            <span class="radio">
-              Money out
+            </div>
+            <div>
+              <input className="input-field" type="radio" name="isMoneyIn" value={false} onClick={this.handleChange} />
+              <span className="radio">
+                Money out
               </span>
-            {/* </label> */}
+            </div>
           </div>
-
-          <label>
-            <span>
-              Amount $
-            </span>
-            <input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
-          </label>
-
-          <label>
-            <span>
-              Description
-            </span>
-            <input type="text" class="input-field" name="desc" maxLength="50" onChange={this.handleChange} />
-          </label>
-
-          {/* {this.state.isWeekly ? <this.WeeklySection /> : <this.MonthlySection />} */}
-          <label>
-            <span>
-              Date of Transaction
-              </span>
-            <DatePicker
-              selected={this.state.date}
-              onSelect={((date) => this.setState({ date: date }))} />
-          </label>
-          <br></br>
+          <div className='form'>
+            <div className='items'>
+              <div className='item'>
+                <div className='label'>Amount $</div>
+                <div className='input'>
+                  <input class="input-field" type="number" step="0.01" name="amount" onChange={this.handleChange} />
+                </div>
+              </div>
+              <div className='item'>
+                <div className='label'>Description</div>
+                <div className='input'>
+                  <input type="text" class="input-field" name="desc" maxLength="50" onChange={this.handleChange} />
+                </div>
+              </div>
+              <div className='item'>
+                <div className='label'>Date</div>
+                <div className='input'>
+                  <DatePicker
+                    selected={this.state.date}
+                    onSelect={((date) => this.setState({ date: date }))} />
+                </div>
+              </div>
+            </div>
+          </div>
           <input type="submit" value="Submit" />
         </form>
+      </MuiThemeProvider>
       </div>
     );
   }
 }
+
+const theme = createMuiTheme({
+  palette: {
+      primary: {
+          light: '#208BDB',
+          main: '#1C50C4',
+          dark: '#2B33DB',
+          contrastText: '#fff',
+      },
+      secondary: {
+          light: '#ff7961',
+          main: '#f44336',
+          dark: '#ba000d',
+          contrastText: '#000',
+      },
+  },
+});
 
 export default Log;

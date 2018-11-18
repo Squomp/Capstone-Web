@@ -4,22 +4,23 @@
   padding: 7% 0;
 }
 
-.left {
+.desc {
   float: left;
   text-align: left;
-  width: 33%;
+  width: 100%;
+  padding-bottom: 5%;
 }
 
-.right {
+.top {
+  float: left;
+  text-align: left;
+  width: 100%;
+  padding-bottom: 3%;
+}
+
+.date {
   float: right;
   text-align: right;
-  width: 33%;
-}
-
-.center {
-  /* margin: 0 auto; */
-  width: 33%;
-  text-align: center;
 }
 
 hr {

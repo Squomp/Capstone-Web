@@ -3,6 +3,7 @@ import axios from 'axios';
 import '../styles/Past.css';
 import moment from 'moment';
 import TransactionList from './TransactionList';
+import TransactionLineGraph from './TransactionLineGraph';
 class Past extends Component {
 
     constructor() {
@@ -60,6 +61,7 @@ class Past extends Component {
                             <h1>Transactions</h1>
                             {transactions.length > 0 ?
                                 <div className='transactionList'>
+                                    <TransactionLineGraph transactions={transactions} />
                                     <TransactionList transactions={transactions} />
                                 </div>
                                 : <p>No transactions in selected period</p>
@@ -87,10 +89,10 @@ const Period = (props) => (
         </div>
         <div className="stack right">
             <div className='vertical rightColumn'>
-                <p className='textRight'>Spent: </p>
-                <p className='textRight'>${props.period.spent}</p>
-                <p className='textRight'>Remaining: </p>
-                <p className='textRight'>${props.period.remaining}</p>
+                <p className='textRight makeRed'>Spent: </p>
+                <p className='textRight makeRed'>${props.period.spent}</p>
+                <p className='textRight makeGreen'>Remaining: </p>
+                <p className='textRight makeGreen'>${props.period.remaining}</p>
             </div>
         </div>
         <hr></hr>

@@ -1,7 +1,3 @@
-h1 {
-    text-align: center;
-}
-
 .vertical {
     display: block;
 }
@@ -78,12 +74,11 @@ hr {
 }
 
 .period:hover {
-    background: lightgray;
-    opacity: 10;
+    background: #A8A7AB;
 }
 
 .period:focus {
     outline: 0;
-    background: gray;
+    background: lightgray;
     border: 2px solid #22382C;
 }

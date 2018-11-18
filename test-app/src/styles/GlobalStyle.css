@@ -10,17 +10,49 @@ div {
 	/* font-family: 'Caveat', cursive; */
 }
 
-h1 {
-  text-align: center;
+h1, h2, h3 {
+	text-align: left;
+	padding-left: 5%;
+}
+
+.form {
+	display: flex;
+}
+
+.items {
+	width: 100%;
+}
+
+.item {
+	display: flex;
+	margin: 4% 0;
+}
+
+.label {
+	float: left;
+	line-height: 30px;
+	width: 30%;
+	margin-right: 5%;
+	font-weight: bold;
+	white-space: nowrap;
+}
+
+.input {
+	z-index: 100;
+	float: right;
+	width: 70%;
+}
+
+.date div {
+	display: inline;
 }
 
 form {
 	max-width: 500px;
-  margin: 0 auto;
+  	margin: 0 auto;
 	padding: 20px 0px 10px 20px;
-	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-  /* border: 1px solid lightgray; */
-  text-align: center;
+	font-family: 'Gill Sans', 'Gill Sans MT', 'Calibri', 'Trebuchet MS', sans-serif;
+	/* text-align: center; */
 }
 
 label{
@@ -31,13 +63,15 @@ label > span{
 	width: 30%;
 	font-weight: bold;
 	float: left;
+	text-align: left;
 	padding-top: 8px;
 }
 label > span.radio {
-  float: none;
+	float: none;
 }
 input.input-field,
- .select-field{
+.react-datepicker__input-container input,
+.select-field{
 	box-sizing: border-box;
 	border: 1px solid #C2C2C2;
 	border-radius: 3px;
@@ -45,6 +79,7 @@ input.input-field,
 	outline: none;
 }
 .input-field:focus,
+.react-datepicker__input-container input:focus,
 .select-field:focus{
 	border: 1px solid #0C0;
 }
@@ -63,6 +98,7 @@ input[type=button]{
 }
 
 .body {
+	z-index: 100;
 	box-shadow: 1px -1px 12px gray;
 	border-radius: 3px;
 	background-color: #ebebeb;
@@ -75,4 +111,16 @@ input[type=button]{
 .errorMessage {
 	color: red;
 	text-align: center;
+}
+
+.radioButtons {
+	display: block;
+	width: 50%;
+	margin: 0 auto;
+    font: 13px Arial, Helvetica, sans-serif;
+    font-weight: bold;
+}
+
+.radioButtons div {
+	margin: 3%;
 }

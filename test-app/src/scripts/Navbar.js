@@ -23,8 +23,9 @@ class Navbar extends Component {
 
   render() {
     return (
-      <HashRouter>
-        <div className="navbar">
+      <div>
+        <HashRouter>
+          <div className="navbar">
             <Sidebar id='sidebar'
               sidebar={
                 <div className="topnav">
@@ -33,7 +34,7 @@ class Navbar extends Component {
                       {/* <span><img style={{ width: '25px', height: '25px'}} src='/x.png' alt ='close'/></span> */}
                     </button>
                     <div id='piggyBank'>
-                    {/* <img id='piggyBank' src='/piggybank.png' alt='' /> */}
+                      {/* <img id='piggyBank' src='/piggybank.png' alt='' /> */}
                     </div>
                   </div>
                   <NavLink exact to="/" onClick={() => this.setState({ sidebarOpen: false })}>
@@ -46,7 +47,7 @@ class Navbar extends Component {
               }
               docked={this.state.sidebarOpen}
               onSetOpen={() => this.setState({ sidebarOpen: true })}>
-              <button class='openBtn sidebarBtn' onClick={() => this.setState({ sidebarOpen: true })}>
+              <button className='openBtn sidebarBtn' onClick={() => this.setState({ sidebarOpen: true })}>
                 {/* <img style={{ width: '25px', height: '25px'}} src='/menu.png' alt='open'/> */}
               </button>
             </Sidebar>
@@ -54,8 +55,9 @@ class Navbar extends Component {
             <Route path="/transactions" component={Transactions} />
             <Route path="/past" component={Past} />
             <Route path="/logout" component={LogOut} />
-        </div>
-      </HashRouter>
+          </div>
+        </HashRouter>
+      </div>
     );
   }
 }
