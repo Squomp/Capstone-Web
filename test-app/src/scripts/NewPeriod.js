@@ -42,7 +42,7 @@ class NewPeriod extends Component {
         amount: this.state.amount
       })
         .then((response) => {
-          this.render();
+          this.props.callBack();
         })
         .catch((error) => {
           console.log(error.response);
@@ -59,7 +59,7 @@ class NewPeriod extends Component {
                         <div>
                             <label>
                                 <span>Amount $</span>
-                                <input class="input-field" type="number" step="0.01" defaultValue={this.props.amount}name="amount"
+                                <input className="input-field" type="number" step="0.01" defaultValue={this.props.amount}name="amount"
                                     onChange={(amount) => { this.setState({ amount }) }} />
                             </label>
                             <label>

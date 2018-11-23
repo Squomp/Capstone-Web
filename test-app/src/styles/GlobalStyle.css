@@ -98,7 +98,6 @@ input[type=button]{
 }
 
 .body {
-	z-index: 100;
 	box-shadow: 1px -1px 12px gray;
 	border-radius: 3px;
 	background-color: #ebebeb;

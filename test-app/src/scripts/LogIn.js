@@ -47,14 +47,14 @@ class LogIn extends Component {
             <span>
               Email
             </span>
-            <input type="text" class="input-field" name="email" onChange={this.handleChange} />
+            <input type="text" className="input-field" name="email" onChange={this.handleChange} />
           </label>
 
           <label>
             <span>
               Password
             </span>
-            <input type="password" class="input-field" name="password" onChange={this.handleChange} />
+            <input type="password" className="input-field" name="password" onChange={this.handleChange} />
           </label>
 
           <input type="submit" value="Submit" />

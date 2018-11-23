@@ -18,7 +18,7 @@ class LogOut extends Component {
       console.log(response);
     })
     .catch(function (error) {
-      console.log(error);
+      console.log(error.response);
     });
     // redirect to home
     this.setState({ redirect: true });

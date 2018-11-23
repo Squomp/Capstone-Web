@@ -57,15 +57,20 @@ class Home extends Component {
     this.getData();
   }
 
+  update() {
+    this.getData();
+    this.props.update();
+  }
+
   LoginSignUp() {
 
     return (
       <div className='auth'>
         <div className='login authContainer'>
-          <LogIn callBack={this.getData} />
+          <LogIn callBack={this.update} />
         </div>
         <div className='signup authContainer'>
-          <SignUp callBack={this.getData} />
+          <SignUp callBack={this.update} />
         </div>
       </div>
     )
@@ -99,7 +104,7 @@ class Home extends Component {
                 <p className="moneyLabel makeGreen">Remaining: ${remaining}</p>
               </div>
             </div>
-            <NewPeriod amount={amount} />
+            <NewPeriod amount={amount} callBack={this.getData} />
           </div>
           <div className='treeImg'>
 

@@ -16,7 +16,7 @@ class SignUp extends Component {
   }
 
   handleSubmit(e) {
-    // e.preventDefault();
+    e.preventDefault();
     console.log(this.state.username);
     // POST form data
     axios.post('/api/auth/register', {
@@ -54,7 +54,7 @@ class SignUp extends Component {
             <span>
               Username
             </span>
-            <input type="text" class="input-field" name="username"
+            <input type="text" className="input-field" name="username"
               onChange={(username) => { this.setState({ username }) }} />
           </label>
 
@@ -62,7 +62,7 @@ class SignUp extends Component {
             <span>
               Email
             </span>
-            <input type="text" class="input-field" name="email"
+            <input type="text" className="input-field" name="email"
               onChange={(email) => { this.setState({ email }) }} />
           </label>
 
@@ -70,7 +70,7 @@ class SignUp extends Component {
             <span>
               Password
             </span>
-            <input type="password" class="input-field" name="password"
+            <input type="password" className="input-field" name="password"
               onChange={(password) => { this.setState({ password }) }} />
           </label>
 
