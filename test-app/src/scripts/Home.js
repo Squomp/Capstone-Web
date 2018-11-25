@@ -27,6 +27,8 @@ class Home extends Component {
     this.LoginSignUp = this.LoginSignUp.bind(this);
     this.getData = this.getData.bind(this);
     this.handleDateSelect = this.handleDateSelect.bind(this);
+    this.getData = this.getData.bind(this);
+    this.update = this.update.bind(this);
   }
 
   getData() {

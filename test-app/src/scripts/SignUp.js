@@ -13,6 +13,7 @@ class SignUp extends Component {
       message: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleSubmit(e) {
@@ -25,23 +26,28 @@ class SignUp extends Component {
       password: this.state.password
     })
       .then((response) => {
-        console.log(response);
+        console.log('register success');
         axios.post('/api/finance/period', {
           start_date: moment().format('YYYY-MM-DD'),
           end_date: moment().add(7, 'days').format('YYYY-MM-DD'),
           amount: 50
         })
           .then((response) => {
+            console.log('period started')
             this.props.callBack();
           })
           .catch((error) => {
-            console.log(error.response);
+            console.log(error);
           });
       })
       .catch((error) => {
         console.log(error.response);
         this.setState({ message: 'Failed to create account' });
       });
+  }
+
+  handleChange(e) {
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
@@ -55,7 +61,7 @@ class SignUp extends Component {
               Username
             </span>
             <input type="text" className="input-field" name="username"
-              onChange={(username) => { this.setState({ username }) }} />
+              onChange={this.handleChange} />
           </label>
 
           <label>
@@ -63,7 +69,7 @@ class SignUp extends Component {
               Email
             </span>
             <input type="text" className="input-field" name="email"
-              onChange={(email) => { this.setState({ email }) }} />
+              onChange={this.handleChange} />
           </label>
 
           <label>
@@ -71,7 +77,7 @@ class SignUp extends Component {
               Password
             </span>
             <input type="password" className="input-field" name="password"
-              onChange={(password) => { this.setState({ password }) }} />
+              onChange={this.handleChange} />
           </label>
 
           <input type="submit" value="Submit" />
