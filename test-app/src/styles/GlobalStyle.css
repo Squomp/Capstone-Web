@@ -28,6 +28,10 @@ h1, h2, h3 {
 	margin: 4% 0;
 }
 
+.item .muiButton {
+	float: right;
+}
+
 .label {
 	float: left;
 	line-height: 30px;

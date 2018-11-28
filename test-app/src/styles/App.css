@@ -18,9 +18,8 @@
 }
 
 #titleimg {
-    /* align-self: center; */
-    width: 6%;
+    min-width: 80px;
     height: 75%;
-    margin-left: 3;
     vertical-align: middle;
+    margin-bottom: 1%;
 }

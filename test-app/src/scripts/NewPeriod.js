@@ -36,17 +36,17 @@ class NewPeriod extends Component {
     }
 
     handleClick() {
-      axios.post('/api/finance/period', {
-        start_date: this.state.startDate.format('YYYY-MM-DD'),
-        end_date: this.state.endDate.format('YYYY-MM-DD'),
-        amount: this.state.amount
-      })
-        .then((response) => {
-          this.props.callBack();
+        axios.post('/api/finance/period', {
+            start_date: this.state.startDate.format('YYYY-MM-DD'),
+            end_date: this.state.endDate.format('YYYY-MM-DD'),
+            amount: this.state.amount
         })
-        .catch((error) => {
-          console.log(error.response);
-        });
+            .then((response) => {
+                this.props.callBack();
+            })
+            .catch((error) => {
+                console.log(error.response);
+            });
     }
 
     render() {
@@ -59,7 +59,7 @@ class NewPeriod extends Component {
                         <div>
                             <label>
                                 <span>Amount $</span>
-                                <input className="input-field" type="number" step="0.01" defaultValue={this.props.amount}name="amount"
+                                <input className="input-field" type="number" step="0.01" defaultValue={this.props.amount} name="amount"
                                     onChange={(amount) => { this.setState({ amount }) }} />
                             </label>
                             <label>
@@ -74,11 +74,12 @@ class NewPeriod extends Component {
                                     selected={this.state.endDate}
                                     onSelect={(date) => { this.setState({ endDate: date }) }} />
                             </label>
-                        </div>
-                        <div>
-                            <Button
-                                variant="outlined" color="primary" name="newPeriod"
-                                onClick={this.handleClick}>New Period</Button>
+                            <div className='item'>
+                                <div className='label'></div>
+                                <Button
+                                    variant="outlined" color="primary" name="newPeriod"
+                                    onClick={this.handleClick}>New Period</Button>
+                            </div>
                         </div>
                     </form>
                 </MuiThemeProvider>

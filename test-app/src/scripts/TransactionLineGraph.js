@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/LineGraph.css';
-import { VictoryChart, VictoryBar, VictoryTheme } from 'victory';
+import { VictoryChart, VictoryBar } from 'victory';
 import moment from 'moment';
 
 class TransactionLineGraph extends Component {
