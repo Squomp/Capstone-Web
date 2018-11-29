@@ -33,9 +33,13 @@ class NewPeriod extends Component {
             amount: props.amount,
         }
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleClick() {
+        // console.log(this.state.amount);
+        // console.log(this.state.startDate.format('YYYY-MM-DD'));
+        // console.log(this.state.endDate.format('YYYY-MM-DD'));
         axios.post('/api/finance/period', {
             start_date: this.state.startDate.format('YYYY-MM-DD'),
             end_date: this.state.endDate.format('YYYY-MM-DD'),
@@ -49,6 +53,10 @@ class NewPeriod extends Component {
             });
     }
 
+    handleChange(e) {
+        this.setState({ [e.target.name]: e.target.value });
+      }
+
     render() {
 
         return (
@@ -60,7 +68,7 @@ class NewPeriod extends Component {
                             <label>
                                 <span>Amount $</span>
                                 <input className="input-field" type="number" step="0.01" defaultValue={this.props.amount} name="amount"
-                                    onChange={(amount) => { this.setState({ amount }) }} />
+                                    onChange={this.handleChange} />
                             </label>
                             <label>
                                 <span>Start Date</span>
