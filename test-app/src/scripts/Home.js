@@ -45,8 +45,8 @@ class Home extends Component {
           currStartDate: moment(financeRes.data.data.period.start_date).format('MM/DD'),
           currEndDate: moment(financeRes.data.data.period.end_date).format('MM/DD'),
           pieData: [
-            { x: '$' + financeRes.data.data.period.spent, y: financeRes.data.data.period.spent },
-            { x: '$' + financeRes.data.data.period.remaining, y: financeRes.data.data.period.remaining }
+            { x: '$' + financeRes.data.data.period.spent.toFixed(2), y: financeRes.data.data.period.spent.toFixed(2) },
+            { x: '$' + financeRes.data.data.period.remaining.toFixed(2), y: financeRes.data.data.period.remaining.toFixed(2) }
           ]
         });
       }))
@@ -79,9 +79,9 @@ class Home extends Component {
   }
 
   PeriodData() {
-    const spent = this.state.data.period.spent;
-    const remaining = this.state.data.period.remaining;
-    const amount = this.state.data.period.amount;
+    const spent = this.state.data.period.spent.toFixed(2);
+    const remaining = this.state.data.period.remaining.toFixed(2);
+    const amount = this.state.data.period.amount.toFixed(2);
     return (
       <div style={{ width: '100%', padding: '5% 0' }}>
         <div className='mainContainer'>
