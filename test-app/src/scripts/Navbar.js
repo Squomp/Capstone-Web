@@ -51,7 +51,7 @@ class Navbar extends Component {
                   <NavLink to="/logout" onClick={() => this.sidebar.close()}>Log Out</NavLink>
                 </div>
               </SideBar>
-              <Route exact path="/" component={() => <Home update={this.unHideBtn} />} />
+              <Route exact path="/" component={Home} />
               <Route path="/transactions" component={Transactions} />
               <Route path="/past" component={Past} />
               <Route path="/logout" component={LogOut} />
